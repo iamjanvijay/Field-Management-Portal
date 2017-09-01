@@ -3,12 +3,14 @@ Django based Field Management Portal to automate the process of land allocation.
 Field Management is a Web Project written in Django 1.8 in Python 2.7
 
 Section 1 - Requirements
+	
 	Python 2.7
 	Django 1.8
 	MySQL-Python [MySQLdb]
 	MySQl Server
 
 Section 2 - Running the Program
+	
 	To run passport_management you need to follow the following steps -
 		1.Open Terminal/CMD.
 		2.Change to projects home directory.
@@ -18,12 +20,12 @@ Section 2 - Running the Program
 		4.Run the Django web server to use the project using command - 'python manage.py runserver 80'
 
 Section 3 - Explaining Project Structure
+	
 	The project contains 6 apps.
 		1. dashboard 				//App for providing functionalities for dashboard
 		2.login						//App for authenticating user,professor admin student plot-manager
 		3.register					//App for registering user,professor student plot-manager
 
-		
 	1. - Dashboard Contains  views -
 		A. requestsAdmin : Concerns with the request Admin recieves for Approval
 		B. requestsProf : Concerns with the request Professor recieves for Approval
