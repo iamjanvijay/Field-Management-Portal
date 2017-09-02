@@ -1,0 +1,48 @@
+<! DOCTYPE html >
+
+<html>
+	
+	<head>
+		<title>
+			DASHBOARD::
+			{% if UserType = "PF" %}Professor {% elif UserType = "PM" %} 	Plot-Manager {% elif UserType = "ST" %} 	Student {% else %} 	Admin {% endif %}
+		</title>
+
+		<style type = "text/css">
+
+		body { background-color: #345602 }	
+		h1 {background-color: #345623;padding: 20px;position: relative;text-align: center}
+		a:link {color: pink;text-decoration: none;}
+		a:visited { color :pink; }
+		a:hover {background-color: yellow;color:black;font-weight: bold;}
+		a:active {background-color: orange;}
+		h3 {background-color: #334623;padding: 10px;position: relative;text-align: center}
+		p {text-align: right;font-style: italic;}
+		</style>
+	</head>
+	
+
+	<body>
+
+		<center><h1> {% if UserType = "PF" %}Professor{% elif UserType = "PM" %}Plot-Manager{% elif UserType = "ST" %}Student{% else %}Admin{% endif %}'s Dashboard </h1></center>	
+		<hr/>
+		<p align = "right"> Welcome {{ user.first_name }} [{{ user.username }}] ! </p>
+
+		{% if UserType = "PF" %}<a href="{% url 'AdvisorReq' %}"> Click to check any pending requests for approval ! </a> <br/>{% endif %}
+		{% if UserType = "AD" %}<a href="{% url 'RequestsAdmin' %}"> Click to check any pending requests for approval ! </a> <br/>{% endif %}
+		{% if UserType = "AD" %}<a href="{% url 'AllocatePlot' %}"> Click to add newly allocated Plots ! </a> <br/>{% endif %}
+		{% if UserType = "ST" %}<a href="{% url 'ReservePlots' %}"> Click to reserve a Plot ! </a> <br/>{% endif %}
+		{% if UserType = "PF" %}<a href="{% url 'ReservePlots' %}"> Click to reserve a Plot ! </a> <br/>{% endif %}
+		{% if UserType = "ST" %}<a href="{% url 'ReservedPlots' %}"> Click to see Status of Your reserved Plot ! </a> <br/>{% endif %}
+		{% if UserType = "PF" %}<a href="{% url 'ReservedPlots' %}"> Click to see Status of Your reserved Plot ! </a> <br/>{% endif %}	
+		{% if UserType = "PM" %}<a href="{% url 'ManagedPlots' %}"> Click to see Status of Your reserved Plot ! </a> <br/>{% endif %}	
+		{% if UserType = "AD" %} <a href="{% url 'Profile' %}"> Click to check your Profile ! </a> <br/> {% endif %}
+		{% if UserType = "PM" %}<a href="{% url 'UpcomingReservations' %}"> Click to see/Cancel Upcoming Reservations ! </a> <br/>{% endif %}	
+		<p><a href="{% url 'home' %}"> Back Home ! </a> <br/></p>
+	</body>	
+
+	
+</html>
+
+
+

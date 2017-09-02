@@ -1,0 +1,136 @@
+<! DOCTYPE html >
+
+<html>
+	
+	<head>
+		<title>
+			Admin::Requests
+		</title>
+
+
+		<style type = "text/css">
+
+		body { background-color: #345602 }	
+		h1 {background-color: #345623;padding: 20px;position: relative;text-align: center}
+		a:link {color: pink;text-decoration: none;}
+		a:visited { color :pink; }
+		a:hover {background-color: yellow;color:black;font-weight: bold;}
+		a:active {background-color: orange;}
+		h3 {background-color: #334623;padding: 10px;position: relative;text-align: center}
+		p {text-align: right;font-style: italic;}
+		td {border: 2px dashed blue;background-color: pink;color: black;font-size: 20px;text-align: center;}
+		th {border: 2px dotted red;background-color: yellow;color: green;font-size: 20px}
+		</style>
+
+	</head>
+	
+
+	<body>
+
+		<h1>
+			<center> Pending Requests </center>
+		</h1>	
+
+		<hr/>
+
+
+
+		{% if professorRequests %}
+		<form method="post" action="" > {% csrf_token %}
+
+				<center> <h3> Request from Professors </h3> </center>
+
+				<table align="center" border = "1">
+
+					<tr>
+						<th> Professor ID </th>
+						<th> First Name </th>
+						<th> Middle Name </th>
+						<th> Last Name </th>
+						<th> Email ID </th>
+						<th> Designation </th>
+						<th> Department ID </th>
+						<th> Approve </th>
+						<th> Disapprove </th>
+						<th> Ignore </th>
+					</tr>
+
+					{% for tuple in professorRequests %}
+
+						<tr>
+							<td> {{ tuple.ProfID }} </td>
+							<td> {{ tuple.FirstName }} </td>
+							<td> {% if tuple.MiddleName == None %} - {% else %} {{ tuple.MiddleName }} {% endif %} </td>
+							<td> {% if tuple.LastName == None %} - {% else %} {{ tuple.LastName }} {% endif %} </td>
+							<td> {{ tuple.EmailID }} </td>
+							<td> {{ tuple.Designation }} </td>
+							<td> {{ tuple.DeptID }} </td>
+							<td> <input type="radio" name="{{ tuple.ProfID }}" value = "APP" />  </td>
+							<td> <input type="radio" name="{{ tuple.ProfID }}" value = "DIS" />  </td>
+							<td> <input type="radio" name="{{ tuple.ProfID }}" value = "IGN" checked/>  </td>
+						</tr>
+
+					{% endfor %}						
+
+				</table>
+
+			<p align="right"> <input type="submit" value="Process Requests !"> </p>
+
+		</form>	<hr/>
+		{% endif %}
+
+
+
+		{% if plotmanagersRequests %}
+		<form method="post" action="" > {% csrf_token %}
+
+				<center> <h3> Request from Plot-Managers </h3> </center>
+
+				<table align="center" border = "1">
+
+					<tr>
+						<th> Plot-Manager ID </th>
+						<th> First Name </th>
+						<th> Middle Name </th>
+						<th> Last Name </th>
+						<th> Email ID </th>
+						<th> Experience </th>
+						<th> Approve </th>
+						<th> Disapprove </th>
+						<th> Ignore </th>
+					</tr>
+
+					{% for tuple in plotmanagersRequests %}
+						
+						<tr>
+							<td> {{ tuple.MangID }} </td>
+							<td> {{ tuple.FirstName }} </td>
+							<td> {% if tuple.MiddleName == None %} - {% else %} {{ tuple.MiddleName }} {% endif %} </td>
+							<td> {% if tuple.LastName == None %} - {% else %} {{ tuple.LastName }} {% endif %} </td>
+							<td> {{ tuple.EmailID }} </td>
+							<td> {{ tuple.Experience }} Years</td>
+							<td> <input type="radio" name="{{ tuple.MangID }}" value = "APP" />  </td>
+							<td> <input type="radio" name="{{ tuple.MangID }}" value = "DIS" />  </td>
+							<td> <input type="radio" name="{{ tuple.MangID }}" value = "IGN" checked/>  </td>
+						</tr>
+						
+					{% endfor %}						
+
+				</table>
+
+			<p align="right"> <input type="submit" value="Process Requests !"> </p>
+
+		</form>	<hr/>
+		{% endif %}
+
+
+
+
+	</body>	
+
+	
+</html>
+
+
+
+

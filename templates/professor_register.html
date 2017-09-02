@@ -1,0 +1,72 @@
+<! DOCTYPE html >
+
+<html>
+	
+	<head>
+		<title>
+			Registration::Professor
+		</title>
+
+		<style type = "text/css">
+
+		body { background-color: #345602 }	
+		h1 {background-color: #345623;padding: 20px;position: relative;text-align: center}
+		a:link {color: pink;text-decoration: none;}
+		a:visited { color :pink; }
+		a:hover {background-color: yellow;color:black;font-weight: bold;}
+		a:active {background-color: orange;}
+		h3 {background-color: #334623;padding: 10px;position: relative;text-align: center}
+		p {text-align: right;font-style: italic;}
+		td {border: 2px dashed blue;background-color: pink;color: black;font-size: 20px;text-align: center;}
+		th {border: 2px dotted red;background-color: yellow;color: green;font-size: 20px}
+		</style>
+		
+	</head>
+	
+
+	<body>
+
+		<h1>
+			<center> Professor Registration Form </center>
+		</h1>	
+
+		<hr/>
+
+		<form method="post" action="" > {% csrf_token %}
+
+			*Professor ID. : <input type="text" name = "ProfID" />  <br/>  {% if isProfIDValidate %} registration request under process | already registered | Invalid Professor ID {% endif %} <br/>	
+			*First Name  : <input type="text" name = "FirstName" /> <br/>  {% if isFirstNameValidate %} only characters allowed a-z | A-Z {% endif %}  <br/>
+			Middle Name  : <input type="text" name = "MiddleName" /> <br/>  {% if isMiddleNameValidate %} only characters allowed a-z | A-Z {% endif %}  <br/>
+			Last Name    : <input type="text" name = "LastName" /> <br/>  {% if isLastNameValidate %} only characters allowed a-z | A-Z {% endif %}  <br/>
+			*Dept. ID  : <input type="text" name = "DeptID" /> <br/>  {% if isDeptIDValidate %} only digits allowed 0-9 | invalid dept-id {% endif %}  <br/>
+			*Sex         : <br/> 
+					<input type="radio" name="Sex" value = "M" checked/> Male  <br/>
+					<input type="radio" name="Sex" value = "F"> Female  <br/>
+			*Mobile No.  : <input type="tel" name = "MobileNo" /> <br/>  {% if isMobileNoValid %} only digits allowed 0-9 | exactly 10 digits | invalid {% endif %}  <br/>
+			*Approver [ Admin. Id. ]    : <input type="text" name = "AdminID" /> <br/>  {% if isAdminIDValidate %} invalid Admin ID {% endif %}  <br/>
+			*Designation      : 
+				<select name = "Designation">
+
+					<option value="Professor"> Professor &nbsp; </option>
+					<option value="Assistant Professor"> Assistant Professor &nbsp; </option>
+					<option value="Associate Professor"> Associate Professor &nbsp; </option>
+
+				</select>  <br/> <br/>
+
+			*Email ID   : <input type="email" name = "EmailID" /> <br/> {% if isEmailIDValid %} invalid email id | professor already exists {% endif %}  <br/>
+			*Password   : <input type="password" name = "Password" /> <br/> {% if isPasswordValid %} atleast 8 chars. | atmost 16 chars. {% endif %}  <br/>
+			*Re-Password   : <input type="password" name = "RePassword" /> <br/> {% if isRePasswordValid %} passwords donot match {% endif %}  <br/> <br/>
+
+			<input type="submit" value="Register !">
+
+		</form>	<hr/>
+		{% if DBerror %} Unexpected Error Occured : {{ DBerror }} | Enter Valid Info {% endif %}
+
+	</body>	
+
+	
+</html>
+
+
+
+

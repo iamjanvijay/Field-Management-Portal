@@ -1,0 +1,54 @@
+<! DOCTYPE html >
+
+<html>
+    
+    <head>
+        <title>
+            Login::{{ UserType }}
+        </title>
+
+
+        <style type = "text/css">
+
+        body { background-color: #345602 }  
+        h1 {background-color: #345623;padding: 20px;position: relative;text-align: center}
+        a:link {color: pink;text-decoration: none;}
+        a:visited { color :pink; }
+        a:hover {background-color: yellow;color:black;font-weight: bold;}
+        a:active {background-color: orange;}
+        h3 {background-color: #334623;padding: 10px;position: relative;text-align: center}
+        p {text-align: right;font-style: italic;}
+        td {border: 2px dashed blue;background-color: pink;color: black;font-size: 20px;text-align: center;}
+        th {border: 2px dotted red;background-color: yellow;color: green;font-size: 20px}
+        </style>
+        
+    </head>
+    
+
+    <body>
+
+        <h1>
+            <center> {{ UserType }} Login </center>
+        </h1>   
+
+        <hr/>
+
+        <form method="post" action="" > {% csrf_token %}
+
+            {{ UserType }} Id :  <input type="text" name="{{ UserType }}Id" />  <br />
+            Password :  <input type="password" name="Password" />  <br />
+
+        <input type="submit" value="Login !">
+
+
+
+        </form> 
+        {% if Invalid %} Inavlid Login Details. Retry ! {% endif %}
+    </body> 
+
+    
+</html>
+
+
+
+

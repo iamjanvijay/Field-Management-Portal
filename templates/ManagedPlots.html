@@ -1,0 +1,86 @@
+<! DOCTYPE html >
+
+<html>
+	
+	<head>
+		<title>
+			Managed :: Plots
+		</title>
+
+
+		<style type = "text/css">
+
+		body { background-color: #345602 }	
+		h1 {background-color: #345623;padding: 20px;position: relative;text-align: center}
+		a:link {color: pink;text-decoration: none;}
+		a:visited { color :pink; }
+		a:hover {background-color: yellow;color:black;font-weight: bold;}
+		a:active {background-color: orange;}
+		h3 {background-color: #334623;padding: 10px;position: relative;text-align: center}
+		p {text-align: right;font-style: italic;}
+		td {border: 2px dashed blue;background-color: pink;color: black;font-size: 20px;text-align: center;}
+		th {border: 2px dotted red;background-color: yellow;color: green;font-size: 20px}
+		</style>
+		
+	</head>
+	
+
+	<body>
+
+		<h1>
+			<center> Managed Plots </center>
+		</h1>	
+
+		<hr/>
+
+
+
+		{% if PlotData %}
+		
+
+				<center> <h3> Plots Managed by You ! </h3> </center>
+
+				<table align="center" border = "1">
+
+					<tr>
+						<th> Plot ID </th>
+						<th> Approx. Area </th>
+						<th> Location </th>
+						<th> Rating </th>
+						<th> Texture </th>
+						<th> Drainage </th>
+						<th> Water Holding Capacity </th>
+						<th> Aeration </th>
+					</tr>
+
+					{% for tuple in PlotData %}
+
+						<tr>
+							<td> {{ tuple.PlotID }} </td>
+							<td> {{ tuple.ApproxArea }} </td>
+							<td> {{ tuple.Location }} </td>
+							<td> {{ tuple.Rating }} </td>
+							<td> {{ tuple.Texture }} </td>
+							<td> {{ tuple.Drainage }} </td>
+							<td> {{ tuple.WaterHoldingCapacity }} </td>
+							<td> {{ tuple.Aeration }} </td>
+						</tr>
+
+						
+					{% endfor %}
+				</table>
+				<hr/>
+		{% else %}
+			<center> 
+				<h3> No Land-plots are Managed by You ! </h3>
+			</center>
+		{% endif %}	
+	<center> <a href="{% url 'home' %}"> Back To Home </a>	</center>
+	</body>	
+
+	
+</html>
+
+
+
+

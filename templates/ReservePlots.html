@@ -1,0 +1,139 @@
+<! DOCTYPE html >
+
+<html>
+	
+	<head>
+		<title>
+			Reserve::Plots
+		</title>
+
+		<style type = "text/css">
+
+		body { background-color: #345602 }	
+		h1 {background-color: #345623;padding: 20px;position: relative;text-align: center}
+		a:link {color: pink;text-decoration: none;}
+		a:visited { color :pink; }
+		a:hover {background-color: yellow;color:black;font-weight: bold;}
+		a:active {background-color: orange;}
+		h3 {background-color: #334623;padding: 10px;position: relative;text-align: center}
+		p {text-align: right;font-style: italic;}
+		td {border: 2px dashed blue;background-color: pink;color: black;font-size: 20px;text-align: center;}
+		th {border: 2px dotted red;background-color: yellow;color: green;font-size: 20px}
+		</style>
+
+	</head>
+	
+
+	<body>
+
+		<h1>
+			<center> Reserve Plots </center>
+		</h1>	
+
+		<hr/>
+
+
+
+		{% if PlotData %}
+		
+
+				<center> <h3> Plots (Check for availability to Reserve) </h3> </center>
+				{{ Message }}<br/>
+				<table align="center" border = "1">
+
+					<tr>
+						<th> Plot ID </th>
+						<th> Approx. Area </th>
+						<th> Soil Drainage </th>
+						<th> Soil Texture </th>
+						<th> Soil Water Holding Cap. </th>
+						<th> Aeration </th>
+						<th> Location </th>
+						<th> Rating </th>
+						<th> Plot Manager ID </th>
+						<th> Start Date </th>
+						<th> End Date </th>
+						<th> Availability </th>
+					</tr>
+
+					{% for tuple in PlotData %}
+						{% if tuple.PlotID == plotcheck %}
+							{% if Available == "Y" %}
+								<form method="post" action="" > {% csrf_token %}
+								<tr>
+								<input name ="Book" type="hidden" value="{{ tuple.PlotID }}" >
+								<input name ="Check" type="hidden" value="None" >		
+									<td> {{ tuple.PlotID }} </td>
+									<td> {{ tuple.ApproxArea }} </td>
+									<td> {{ tuple.Drainage }} </td>
+									<td> {{ tuple.Texture }} </td>
+									<td> {{ tuple.WaterHoldingCapacity }} </td>
+									<td> {{ tuple.Aeration }} </td>
+									<td> {{ tuple.Location }} </td>
+									<td> {{ tuple.Rating }} </td>
+									<td> {{ tuple.MangID }} </td>
+									<td>  <input  type="date" name="StartDateD" min = "{{ mindate }}" max="{{ maxdate }}" value = "{{ StartDate }}" disabled>  </td>
+										  <input  type="hidden" name="StartDate" value = "{{ StartDate }}" >
+									<td>  <input type="date" name="EndDateD" min = "{{ mindate }}" max="{{ maxdate }}" value = "{{ EndDate }}" disabled>  </td>
+									      <input  type="hidden" name="EndDate" value = "{{ EndDate }}" >
+									<td> <input type="submit" value="Book !">  </td>
+								</tr>
+							{% else %}
+								<form method="post" action="" > {% csrf_token %}
+								<tr>
+								<input name ="Check" type="hidden" value="{{ tuple.PlotID }}" >
+								<input name ="Book" type="hidden" value="None" >		
+									<td> {{ tuple.PlotID }} </td>
+									<td> {{ tuple.ApproxArea }} </td>
+									<td> {{ tuple.Drainage }} </td>
+									<td> {{ tuple.Texture }} </td>
+									<td> {{ tuple.WaterHoldingCapacity }} </td>
+									<td> {{ tuple.Aeration }} </td>
+									<td> {{ tuple.Location }} </td>
+									<td> {{ tuple.Rating }} </td>
+									<td> {{ tuple.MangID }} </td>
+									<td>  <input  type="date" name="StartDate" min = "{{ mindate }}" max="{{ maxdate }}">  </td>
+									<td>  <input type="date" name="EndDate" min = "{{ mindate }}" max="{{ maxdate }}">  </td>
+									<td> <input type="submit" value="Check !"> <br> Unavailable . Try Other Slot.  </td>
+								</tr>
+							{% endif %}
+						</form>	
+						{% else %}
+							<form method="post" action="" > {% csrf_token %}
+							<tr>
+								<input name ="Check" type="hidden" value="{{ tuple.PlotID }}" >
+								<input name ="Book" type="hidden" value="None" >
+								<td> {{ tuple.PlotID }} </td>
+								<td> {{ tuple.ApproxArea }} </td>
+								<td> {{ tuple.Drainage }} </td>
+								<td> {{ tuple.Texture }} </td>
+								<td> {{ tuple.WaterHoldingCapacity }} </td>
+								<td> {{ tuple.Aeration }} </td>
+								<td> {{ tuple.Location }} </td>
+								<td> {{ tuple.Rating }} </td>
+								<td> {{ tuple.MangID }} </td>
+								<td>  <input  type="date" name="StartDate" min = "{{ mindate }}" max="{{ maxdate }}">  </td>
+								<td>  <input type="date" name="EndDate" min = "{{ mindate }}" max="{{ maxdate }}">  </td>
+								<td> <input type="submit" value="Check !">  </td>
+							</tr>
+
+							</form>	
+						{% endif %}
+						<hr/>
+					{% endfor %}
+				</table>
+
+		{% else %}
+			<center> 
+				<h3> No Land-plots for now ! </h3>
+			</center>
+		{% endif %}	
+	<p><center> <a href="{% url 'home' %}"> Back To Home </a>	</center></p>
+	</body>	
+
+	
+</html>
+
+
+
+

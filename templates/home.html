@@ -1,0 +1,64 @@
+<! DOCTYPE html >
+
+<html>
+	
+	<head>
+		<title>
+			HOME::FMP
+		</title>
+		<style type = "text/css">
+
+		body { background-color: #345602 }	
+		h1 {background-color: #345623;padding: 20px;position: relative;text-align: center}
+		a:link {color: pink;text-decoration: none;}
+		a:visited { color :pink; }
+		a:hover {background-color: yellow;color:black;font-weight: bold;}
+		a:active {background-color: orange;}
+		h3 {background-color: #334623;padding: 10px;position: relative;text-align: center}
+
+		</style>
+	</head>
+	
+
+	<body>
+
+		<h1>
+			Field Management Portal 
+		</h1>	
+
+		<hr/>
+		<!-- <a href="{% url 'RequestsAdmin' %}"> Home </a> <br/> -->
+		{% if RegSuccess %}
+			You request for registration in under process ! Please wait until you are approved. <br/>
+			<a href="{% url 'home' %}"> Home </a> <br/>
+		{% endif %}	
+		{% if LoginSuccess %}
+			You have been succesfully logged in. <br/>
+			<a href="{% url 'home' %}"> Home </a> <br/>
+		{% endif %}
+		{% if LogoutSuccess %}
+			You have been succesfully logged out. <br/>
+			<a href="{% url 'home' %}"> Home </a> <br/>
+		{% endif %}
+			<h3 > HOME </h3>
+		{% if user.is_authenticated %}
+                <I><p align="right">Welcome {{ user.first_name }} [{{ user.username }}] ! </p><br/></I>
+                <a href="{% url 'Homedashboard' %}"> Click To enter DashBoard </a> <br/>
+                <a href="{% url 'logout' %}"> Logout </a> <br/>
+        {% else %}          			
+			<a href = "{% url 'SRegister' %}"> Students Register Here </a> <br/>
+			<a href = "{% url 'PFRegister' %}"> Professors Register Here </a><br/>
+			<a href = "{% url 'PMRegister' %}"> Plot-Managers Register Here </a><br/>
+			<a href = "{% url 'ALogin' %}"> Admin Login </a><br/>
+			<a href = "{% url 'PFLogin' %}"> Professor Login </a><br/>
+			<a href = "{% url 'PMLogin' %}"> Plot-Manager Login </a><br/>
+			<a href = "{% url 'SLogin' %}"> Student Login </a><br/>
+		{% endif %}
+	</body>	
+
+	
+</html>
+
+
+
+

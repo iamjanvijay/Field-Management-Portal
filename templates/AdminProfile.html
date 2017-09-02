@@ -1,0 +1,54 @@
+<! DOCTYPE html >
+
+<html>
+    
+    <head>
+        <title>
+            {{ user.first_name }}::AdminProfile 
+        </title>
+
+
+        <style type = "text/css">
+
+        body { background-color: #345602 }  
+        h1 {background-color: #345623;padding: 20px;position: relative;text-align: center}
+        a:link {color: pink;text-decoration: none;}
+        a:visited { color :pink; }
+        a:hover {background-color: yellow;color:black;font-weight: bold;}
+        a:active {background-color: orange;}
+        h3 {background-color: #334623;padding: 10px;position: relative;text-align: center}
+        p {text-align: right;font-style: italic;}
+        td {border: 2px dashed blue;background-color: pink;color: black;font-size: 20px;text-align: center;}
+        th {border: 2px dotted red;background-color: yellow;color: green;font-size: 20px}
+        </style>
+        
+    </head>
+    
+
+    <body>
+
+        <h1>
+            <center> Profile </center>
+        </h1>   
+
+        <hr/>
+
+        <legend> Admin Profile </legend>
+        <form method="post" action="" > {% csrf_token %}
+
+
+            ADMIN ID : <input type="text" name = "AdminID" value="{{ AdminID }}" disabled/>  <br/>   
+            FIRST NAME : <input type="text" name = "FirstName" value="{{ FirstName }}" disabled/> <br/>  
+            MIDDLE NAME  : <input type="text" name = "MiddleName"  value="{{ MiddleName }}"  disabled/> <br/>  
+            LAST NAME    : <input type="text" name = "LastName"  value="{{ LastName }}"  disabled/> <br/>   
+            EMAIL ID  : <input type="text" name = "EmailID"  value="{{ EmailID }}"  disabled/> <br/>  
+
+            <!-- <input type="submit" value="Edit"> -->
+
+        </form> <hr/>
+    </body> 
+
+    
+</html>
+
+
